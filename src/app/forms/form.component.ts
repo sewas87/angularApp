@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 export class Phone {
@@ -19,9 +20,29 @@ export class Phone {
 
 export class FormComponent {
 
+  userForm: FormGroup;
+
+  constructor(
+      private fb: FormBuilder
+  ) {
+    this.userForm = fb.group({
+      userName: ['tom'],
+      userEmail: ['', Validators.email],
+      userPhone: fb.array([
+        ['+380']
+      ])
+
+    });
+  }
+  submit() {
+    console.log(this.userForm.value);
+  }
+  addPhone() {
+    (<FormArray>this.userForm.controls["userPhone"]).push(new FormControl("+380"));
+  }
   companies: string[] = ['apple', 'samsung', 'nokia', 'lg'];
   phones = [];
-  addPhone(title: string, price: number, company: string) {
+  addSmartphone(title: string, price: number, company: string) {
     this.phones.push(new Phone(title, price, company));
   }
 
