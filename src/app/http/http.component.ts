@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import {HttpService} from "../servises/http.service";
+import {HttpService} from '../servises/http.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -11,12 +12,19 @@ import {HttpService} from "../servises/http.service";
 
 export class HttpComponent implements OnInit {
   userName = [];
+  name: string;
+  nameView = false;
+  formId: FormGroup;
 
   constructor(
-     private http: HttpService
+     private http: HttpService,
+     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.formId = this.fb.group({
+      id: [''],
+    });
     this.getUserList();
   }
   getUserList() {
@@ -25,4 +33,15 @@ export class HttpComponent implements OnInit {
           this.userName = respons;
         });
   }
+  getUserId() {
+    const id = this.formId.value.id;
+    this.http.getById(id)
+        .subscribe((response) => {
+          this.name = response.name;
+          console.log(this.name);
+          this.nameView = true;
+        });
+  }
 }
+
+

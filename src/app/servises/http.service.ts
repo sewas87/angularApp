@@ -10,9 +10,13 @@ export class HttpService {
     ) {}
     getUsers(): Observable<any> {
        return this.httpClient.get('https://jsonplaceholder.typicode.com/users').pipe(map(respons => {
-           const userName = respons
+           const userName = respons as Array<any>;
            return userName.map( item => item.name);
-       }))
+       }));
+    }
+    getById(id: number): Observable<any> {
+        return this.httpClient.get('https://jsonplaceholder.typicode.com/users/' + id);
     }
 
 }
+

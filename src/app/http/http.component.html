@@ -1,6 +1,26 @@
 <div class="container pt-3 pb-3 border-bottom">
   <div class="row">
     <div class="col-12">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3>Get user by Id</h3>
+    </div>
+    <div class="col-6">
+      <form [formGroup]="formId">
+      <div class="form-group">
+        <label>Type user id:</label>
+        <input class="form-control" type="text" formControlName="id"/>
+        <label class="w-100" *ngIf="nameView">User {{name}}</label>
+        <button class="btn btn-primary mt-3" (click)="getUserId()">Get user</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
       <h3>Http</h3>
     </div>
     <div class="col-12">
