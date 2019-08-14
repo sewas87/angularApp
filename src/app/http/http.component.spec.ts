@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { FormComponent } from './http.component';
 
-describe('ChildComponent', () => {
+describe('ItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [

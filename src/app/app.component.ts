@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from './servises/data.service';
 
 class Item {
@@ -19,7 +19,7 @@ class Item {
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   price: number;
   name: string;
   nameUser = 'Tom';

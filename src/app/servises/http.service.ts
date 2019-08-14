@@ -17,6 +17,11 @@ export class HttpService {
     getById(id: number): Observable<any> {
         return this.httpClient.get('https://jsonplaceholder.typicode.com/users/' + id);
     }
-
+    getPosts(): Observable<any> {
+        return this.httpClient.get('https://jsonplaceholder.typicode.com/posts?userId=1');
+    }
+    sendPost(postBody): Observable<any> {
+        return  this.httpClient.post('https://jsonplaceholder.typicode.com/posts?userId=1', postBody);
+    }
 }
 
