@@ -1,6 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from '../servises/http.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {debounceTime, map} from 'rxjs/operators';
 
 
 @Component({
@@ -9,14 +10,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./http.component.css']
 })
 
-
 export class HttpComponent implements OnInit {
-  userName = [];
+    userName = [];
   name: string;
   nameView = false;
   formId: FormGroup;
 
-  constructor(
+
+    constructor(
      private http: HttpService,
      private fb: FormBuilder
   ) {}

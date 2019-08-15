@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import {debounceTime, map} from 'rxjs/operators';
 @Injectable()
 
 export class HttpService {
@@ -22,6 +22,9 @@ export class HttpService {
     }
     sendPost(postBody): Observable<any> {
         return  this.httpClient.post('https://jsonplaceholder.typicode.com/posts?userId=1', postBody);
+    }
+    getGitRepos(userName: any): Observable<any> {
+        return this.httpClient.get(`https://api.github.com/users/${userName}/repos`);
     }
 }
 

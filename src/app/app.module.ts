@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-     RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes)
 
   ],
   providers: [DataService, ConsLogService, HttpService],

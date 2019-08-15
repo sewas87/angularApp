@@ -1,14 +1,19 @@
 <div class="container pt-3 pb-3 border-bottom">
   <div class="row">
-    <div class="col-12">
-
+    <div class="col-12 pb-3">
+        <h3>get Git projects list</h3>
+        <div class="form-group d-flex">
+        </div>
+        <ul>
+          <li></li>
+        </ul>
     </div>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 pb-3">
       <h3>Get user by Id</h3>
     </div>
-    <div class="col-6">
+    <div class="col-6 pb-3">
       <form [formGroup]="formId">
       <div class="form-group">
         <label>Type user id:</label>
@@ -23,7 +28,7 @@
     <div class="col-12">
       <h3>Http</h3>
     </div>
-    <div class="col-12">
+    <div class="col-12 pb-3">
       <ul>
         <li *ngFor="let user of userName; let i = index">
           {{i+1}} {{user}}
