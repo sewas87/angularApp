@@ -24,7 +24,14 @@ export class HttpService {
         return  this.httpClient.post('https://jsonplaceholder.typicode.com/posts?userId=1', postBody);
     }
     getGitRepos(userName: any): Observable<any> {
-        return this.httpClient.get(`https://api.github.com/users/${userName}/repos`);
+        return this.httpClient.get(`https://api.github.com/users/${userName}/repos`).pipe(
+            map(respons => {
+            const arry = respons as Array<any>;
+            return arry.map((item) => {
+               const userObj = {name: item.name, link: item.html_url};
+               return userObj;
+            });
+        }));
     }
 }
 

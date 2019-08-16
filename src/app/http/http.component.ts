@@ -1,7 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from '../servises/http.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {debounceTime, map} from 'rxjs/operators';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
+import {fromEvent} from 'rxjs';
 
 
 @Component({
@@ -10,11 +11,13 @@ import {debounceTime, map} from 'rxjs/operators';
   styleUrls: ['./http.component.css']
 })
 
+
 export class HttpComponent implements OnInit {
-    userName = [];
-  name: string;
-  nameView = false;
-  formId: FormGroup;
+    usersGit: object[] = [];
+    name: string;
+    nameView = false;
+    formId: FormGroup;
+    searchInput = new FormControl('');
 
 
     constructor(
@@ -26,13 +29,15 @@ export class HttpComponent implements OnInit {
     this.formId = this.fb.group({
       id: [''],
     });
-    this.getUserList();
-  }
-  getUserList() {
-    this.http.getUsers()
-        .subscribe((respons) => {
-          this.userName = respons;
-        });
+
+    this.searchInput.valueChanges.pipe(
+        filter(userName => userName !== undefined && userName.length > 2),
+        debounceTime(700),
+        distinctUntilChanged(),
+        switchMap(userName => this.http.getGitRepos(userName))
+    ).subscribe(data => {
+        this.usersGit = data;
+    });
   }
   getUserId() {
     const id = this.formId.value.id;
@@ -43,6 +48,6 @@ export class HttpComponent implements OnInit {
           this.nameView = true;
         });
   }
+    // const keyUp = fromEvent(input, 'keyup');
+
 }
-
-

@@ -3,9 +3,12 @@
     <div class="col-12 pb-3">
         <h3>get Git projects list</h3>
         <div class="form-group d-flex">
+          <input #input [formControl]="searchInput" [ngModel]="name" type="text">
         </div>
         <ul>
-          <li></li>
+          <li class="d-flex" *ngFor=" let user of usersGit">
+              <p class="mb-0 mr-3">{{user.name}}</p><a target="_blank" href="{{user.link}}">{{user.link}}</a>
+          </li>
         </ul>
     </div>
   </div>
