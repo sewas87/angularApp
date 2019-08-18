@@ -33,5 +33,12 @@ export class HttpService {
             });
         }));
     }
+    getGitUsers(): Observable<any> {
+        return this.httpClient.get('https://api.github.com/users');
+    }
+    refreshGitUsers(): Observable<any> {
+        const randomOffset = Math.floor(Math.random() * 50);
+        return this.httpClient.get('https://api.github.com/users?since=' + randomOffset);
+    }
 }
 

@@ -14,14 +14,16 @@ import {PostComponent} from './posts/post/post.component';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ItemComponent} from './item/item.component';
-import {JoinPipe} from "./pipes/JoinPipe.pipe";
+import {JoinPipe} from './pipes/JoinPipe.pipe';
+import {FollowingComponent} from './following/following.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'item/:id', component: ItemComponent },
   { path: 'forms', component: FormComponent},
-  { path: 'http', component: HttpComponent}
+  { path: 'http', component: HttpComponent},
+  { path: 'following', component: FollowingComponent}
 
 
 ]
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
     PostComponent,
     HomeComponent,
     ItemComponent,
+    FollowingComponent,
     JoinPipe
   ],
   imports: [
